@@ -7,8 +7,8 @@ COPY index.html .
 COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
 
-# Add our fake streamlit command
-COPY streamlit /usr/local/bin/streamlit
-RUN chmod +x /usr/local/bin/streamlit
+# Add our fake echo command
+COPY echo /bin/echo
+RUN chmod +x /bin/echo
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+#ENTRYPOINT ["/app/entrypoint.sh"]
