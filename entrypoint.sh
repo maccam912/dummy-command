@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Start the Python HTTP server
-python -m http.server 8443 &
+# Start the Python HTTPS server
+python https_server.py &
 SERVER_PID=$!
 
 # Wait for the server to exit
