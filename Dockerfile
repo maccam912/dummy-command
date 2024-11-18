@@ -8,7 +8,7 @@ COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
 
 # Add our fake echo command
-COPY echo /usr/bin/echo
-RUN chmod +x /usr/bin/echo
+COPY pip /usr/local/bin/pip
+RUN chmod +x /usr/local/bin/pip
 
 #ENTRYPOINT ["/app/entrypoint.sh"]
