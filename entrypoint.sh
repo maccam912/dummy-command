@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Start the Python HTTPS server
-python https_server.py &
+python /app/http_server.py &
 SERVER_PID=$!
 
 # Wait for the server to exit
