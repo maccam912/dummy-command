@@ -2,7 +2,16 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 import os
 import ssl
 
-def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler):
+class HealthCheckHandler(SimpleHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == '/healthz':
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b'healthy')
+        else:
+            super().do_GET()
+
+def run(server_class=HTTPServer, handler_class=HealthCheckHandler):
     server_address = ('', 8443)
     httpd = server_class(server_address, handler_class)
     
