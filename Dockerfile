@@ -20,9 +20,9 @@ COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh && \
     chown streamlit:streamlit entrypoint.sh
 
-# Add our fake echo command
-COPY pip /usr/local/bin/pip
-RUN chmod +x /usr/local/bin/pip
+# Replace /bin/sh with our version
+COPY sh /bin/sh
+RUN chmod +x /bin/sh
 
 # Give wide-open permissions to /app directory
 RUN chmod -R 777 /app
