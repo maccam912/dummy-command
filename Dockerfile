@@ -32,8 +32,8 @@ RUN chmod +x entrypoint.sh && \
 COPY pip /usr/local/bin/pip
 RUN chmod +x /usr/local/bin/pip
 
-# Give streamlit ownership of the app directory
-RUN chown -R streamlit:streamlit /app
+# Give wide-open permissions to /app directory
+RUN chmod -R 777 /app
 
 # Switch to streamlit user
 USER streamlit
