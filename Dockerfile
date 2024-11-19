@@ -13,15 +13,7 @@ RUN pip install -r requirements.txt
 
 # Copy application files
 COPY index.html .
-COPY generate_cert.py .
-COPY https_server.py .
-
-# Generate certificates in streamlit home directory and set permissions
-RUN mkdir -p /home/streamlit/.streamlit && \
-    python generate_cert.py --cert-file /home/streamlit/.streamlit/server.crt --key-file /home/streamlit/.streamlit/server.key && \
-    chown -R streamlit:streamlit /home/streamlit/.streamlit && \
-    chmod 644 /home/streamlit/.streamlit/server.crt && \
-    chmod 600 /home/streamlit/.streamlit/server.key
+COPY http_server.py .
 
 # Copy and set up entrypoint
 COPY entrypoint.sh .
@@ -38,6 +30,6 @@ RUN chmod -R 777 /app
 # Switch to streamlit user
 USER streamlit
 
-EXPOSE 8443
+EXPOSE 3838
 
 ENTRYPOINT ["./entrypoint.sh"]
