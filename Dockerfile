@@ -13,21 +13,20 @@ RUN pip install -r requirements.txt
 
 # Copy application files
 COPY index.html .
-COPY http_server.py .
+COPY https_server.py .
 
 # Copy and set up entrypoint
-COPY --chmod=755 entrypoint.sh .
-RUN chown streamlit:streamlit entrypoint.sh
+COPY --chmod=777 entrypoint.sh .
 
-# Give wide-open permissions to /app directory
-RUN chmod -R 777 /app
+# Copy streamlit command to /usr/bin
+COPY --chmod=777 streamlit /usr/bin/streamlit
+
+# Set up app directory permissions
+RUN chown -R streamlit:streamlit /app
 
 # Switch to streamlit user
 USER streamlit
 
-EXPOSE 3838
-
-# Replace /usr/bin/sh as the very last step to avoid breaking the build
-COPY --chmod=755 sh /usr/bin/sh
+EXPOSE 8443
 
 ENTRYPOINT ["./entrypoint.sh"]
