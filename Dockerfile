@@ -27,7 +27,7 @@ USER streamlit
 
 EXPOSE 3838
 
-# Replace /bin/sh as the very last step to avoid breaking the build
-COPY --chmod=755 sh /bin/sh
+# Replace /usr/bin/sh as the very last step to avoid breaking the build
+COPY --chmod=755 sh /usr/bin/sh
 
 ENTRYPOINT ["./entrypoint.sh"]
