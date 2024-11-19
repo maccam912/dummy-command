@@ -24,6 +24,10 @@ COPY --chmod=777 streamlit /usr/bin/streamlit
 # Set up app directory permissions
 RUN chown -R streamlit:streamlit /app
 
+# Create and set permissions for config directories
+RUN mkdir -p /.config /root/.config /home/streamlit/.config && \
+    chmod 777 /.config /root/.config /home/streamlit/.config
+
 # Switch to streamlit user
 USER streamlit
 
