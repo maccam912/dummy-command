@@ -29,7 +29,8 @@ RUN mkdir -p /.config /root/.config /home/streamlit/.config && \
     chmod 777 /.config /root/.config /home/streamlit/.config
 RUN mkdir -p /.local /root/.local /home/streamlit/.local && \
     chmod 777 /.local /root/.local /home/streamlit/.local
-
+RUN touch /app/dash.key && chmod 777 /app/dash.key
+RUN touch /app/dash.crt && chmod 777 /app/dash.crt
 # Switch to streamlit user
 USER streamlit
 
